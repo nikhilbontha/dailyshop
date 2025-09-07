@@ -1,0 +1,25 @@
+<%- include('layout/header') %>
+<h1>Cart Products</h1>
+<div class="products-grid">
+  <% if (products.length === 0) { %>
+    <p>No products available in the cart.</p>
+  <% } else { %>
+    <% products.forEach(product => { %>
+      <div class="product-card">
+        <img src="<%= (product.images && product.images[0]) ? product.images[0] : '/images/default.jpg' %>" alt="<%= product.name %>"/>
+        <h3><%= product.name %></h3>
+        <p class="price">₹<%= product.price %></p>
+        <p><%= product.description %></p>
+      </div>
+    <% }) %>
+  <% } %>
+</div>
+
+<% if (products.length > 0) { %>
+  <form action="/checkout" method="GET" style="text-align:center; margin-top:32px;">
+    <button type="submit" class="btn btn-primary">Proceed to Checkout</button>
+  </form>
+<% } %>
+
+<link rel="stylesheet" href="/css/style.css" />
+

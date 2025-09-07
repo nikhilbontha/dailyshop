@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Account - DailyShop</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <%- include('../layout/header') %>
+
+  <main class="container">
+    <h1>Account</h1>
+
+    <% if (!user) { %>
+      <p>Please choose:</p>
+      <ul>
+        <li><a href="/auth/login">Login</a></li>
+        <li><a href="/auth/register">Register</a></li>
+      </ul>
+    <% } else { %>
+      <p>Welcome, <%= user.username %></p>
+      <ul>
+        <li><a href="/profile">Profile</a></li>
+        <li><a href="/auth/logout">Logout</a></li>
+      </ul>
+    <% } %>
+  </main>
+
+  <%- include('../layout/footer') %>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DailyShop - Home</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+   <!-- Include header partial if exists -->
+  <%- include('layout/header') %>
+  <main class="container" style="min-height:80vh;">
+    <header class="hero" style="background:linear-gradient(90deg,#219150 0%,#43e97b 100%);border-radius:18px;margin:40px auto 32px auto;max-width:900px;padding:48px 0;text-align:center;box-shadow:0 4px 32px rgba(33,145,80,0.10);animation:fadeInUp 1s;">
+      <h1 style="font-size:2.7rem;font-weight:700;color:#fff;letter-spacing:1px;margin-bottom:12px;">Welcome to DailyShop</h1>
+      <p style="font-size:1.3rem;color:#f5f5f5;">Your One-Stop Shop for Daily Essentials</p>
+    </header>
+
+    <section class="categories" style="display:flex;flex-wrap:wrap;justify-content:center;gap:32px;max-width:1100px;margin:0 auto;">
+      <% const categories = [
+        { name: 'Medicines', slug: 'medicines', image: '/images/medicines.jpg' },
+        { name: 'Home Needs', slug: 'home-needs', image: '/images/home-needs.jpg' },
+        { name: 'Kitchen Items', slug: 'kitchen', image: '/images/kitchen.jpg' },
+        { name: 'Clothes', slug: 'clothes', image: '/images/clothes.jpg' },
+        { name: 'Books', slug: 'books', image: '/images/books.jpg' },
+        { name: 'Stationery', slug: 'stationery', image: '/images/stationery.jpg' },
+        { name: 'Electronics', slug: 'electronics', image: '/images/electronics.jpg' }
+      ]; %>
+
+      <% categories.forEach(category => { %>
+        <a href="/category/<%= category.slug %>" class="category-card" style="background:var(--card-bg);border-radius:16px;box-shadow:0 2px 16px rgba(33,145,80,0.09);width:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 0 18px 0;text-align:center;transition:var(--transition);animation:fadeInUp 0.7s;position:relative;overflow:hidden;">
+          <img src="<%= category.image %>" alt="<%= category.name %>" class="category-image" style="width:100%;height:140px;object-fit:cover;border-top-left-radius:16px;border-top-right-radius:16px;box-shadow:0 2px 8px rgba(33,145,80,0.07);transition:transform 0.3s;" />
+          <div class="category-name" style="font-size:1.25rem;font-weight:600;color:var(--primary);margin-top:16px;transition:color 0.2s;"> <%= category.name %> </div>
+        </a>
+      <% }); %>
+    </section>
+  </main>
+  <style>
+    .category-card:hover {
+      box-shadow:0 8px 32px rgba(33,145,80,0.18);
+      transform:scale(1.05) translateY(-6px);
+      z-index:2;
+    }
+    .category-card:hover .category-image {
+      transform:scale(1.08) rotate(-2deg);
+      filter:brightness(1.08) saturate(1.2);
+    }
+    .category-card:hover .category-name {
+      color:var(--accent);
+      text-shadow:0 2px 8px rgba(245,181,10,0.12);
+    }
+    @keyframes fadeInUp {
+      from { opacity:0; transform:translateY(30px); }
+      to { opacity:1; transform:translateY(0); }
+    }
+  </style>
+<!-- Other HTML content -->
+
+<!-- Your page content ends here -->
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const userMenu = document.getElementById('userMenu');
+    const toggle = document.getElementById('accountToggle');
+
+    toggle.addEventListener('click', e => {
+      e.preventDefault();
+      userMenu.classList.toggle('open');
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', e => {
+      if (!userMenu.contains(e.target)) {
+        userMenu.classList.remove('open');
+      }
+    });
+  });
+</script>
+
+  <footer class="footer">
+    <p>&copy; 2025 DailyShop. All rights reserved to BONTHA NIKHIL.</p>
+  </footer>
+</body>
+</html>
+>
